@@ -1,0 +1,15 @@
+@use './styles/fonts.scss';
+
+body {
+  margin: 0;
+  font-family: fonts.$raleway;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.content {
+  padding-top: 80px;
+}
