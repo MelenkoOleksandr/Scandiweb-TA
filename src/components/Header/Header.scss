@@ -26,7 +26,7 @@ header {
       &:hover {
         cursor: pointer;
       }
-      &.active {
+      .navigation-item__active {
         font-weight: fonts.$bold;
         color: colors.$green;
         border-bottom: 2px solid colors.$green;
@@ -80,7 +80,7 @@ header {
         }
       }
     }
-    .cart {
+    .cart-btn {
       display: flex;
       align-items: center;
     }

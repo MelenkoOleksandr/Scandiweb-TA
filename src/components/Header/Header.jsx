@@ -1,19 +1,29 @@
-import { Component } from 'react';
-
+import { Component } from "react";
+import { gql } from "@apollo/client";
+import { Query } from "@apollo/client/react/components";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
-import logo from '../../assets/logo.png';
+import logo from "../../assets/logo.png";
 import caret from "../../assets/caret.png";
 import cart from "../../assets/cart.png";
-import CurrencyDropdown from '../CurrencyDropdown/CurrencyDropdown';
+import CurrencyDropdown from "../CurrencyDropdown/CurrencyDropdown";
+
+const GET_ALL_CATEGORIES = gql`
+  query GetAllCategories {
+    categories {
+      name
+    }
+  }
+`;
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isCurrencyOpen: false,
-      isCartOpen: false
-    }
-    this.handleCurrencyClick = this.handleCurrencyClick.bind(this)
+      isCartOpen: false,
+    };
+    this.handleCurrencyClick = this.handleCurrencyClick.bind(this);
   }
 
   handleCurrencyClick() {
@@ -23,14 +33,30 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.state);
+  
     return (
       <header>
         <nav className="navigation">
           <ul className="navigation-list">
-            <li className="navigation-item active">Women</li>
-            <li className="navigation-item">Men</li>
-            <li className="navigation-item">Kids</li>
+            <Query query={GET_ALL_CATEGORIES}>
+              {({ loading, error, data }) => {
+                if (error) {
+                  console.log(error);
+                  return null;
+                }
+
+                return data?.categories.map(({ name }) => (
+                  <li className="navigation-item" key={name}>
+                    <NavLink
+                      activeClassName="navigation-item__active"
+                      to={`/${name}`}
+                    >
+                      {name}
+                    </NavLink>
+                  </li>
+                ));
+              }}
+            </Query>
           </ul>
         </nav>
 
@@ -47,7 +73,7 @@ class Header extends Component {
             </button>
             {this.state.isCurrencyOpen && <CurrencyDropdown />}
           </div>
-          <div className="cart">
+          <div className="cart-btn">
             <img src={cart} alt="cart" />
           </div>
         </div>

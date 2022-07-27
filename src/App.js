@@ -2,7 +2,7 @@ import { Component } from "react";
 import {
   BrowserRouter,
   Route,
-  Routes
+  Switch
 } from 'react-router-dom'
 import Header from "./components/Header/Header";
 import Cart from "./pages/Cart";
@@ -14,13 +14,15 @@ class App extends Component {
       <BrowserRouter>
         <Header />
         <div className="content">
-          <Routes>
-            <Route index path="/" element={<Category />} />
-            <Route index path="/products/:productId" element={<Product />} />
-            <Route index path="/cart" element={<Cart />} />
-          </Routes>
+          <Switch>
+            <Route path="/:categoryName" >
+              <Category />
+            </Route>
+            <Route path="/products/:productId" ><Product /></Route>
+            <Route index path="/cart" ><Cart /></Route>
+          </Switch>
         </div>
-       
+
       </BrowserRouter>
     )
   }
