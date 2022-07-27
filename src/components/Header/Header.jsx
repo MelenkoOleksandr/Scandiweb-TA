@@ -6,7 +6,7 @@ import "./Header.scss";
 import logo from "../../assets/logo.png";
 import caret from "../../assets/caret.png";
 import cart from "../../assets/cart.png";
-import CurrencyDropdown from "../CurrencyDropdown/CurrencyDropdown";
+import CurrencyDropdownContainer from "../../containers/CurrencyDropdownContainer";
 
 const GET_ALL_CATEGORIES = gql`
   query GetAllCategories {
@@ -71,7 +71,7 @@ class Header extends Component {
             >
               <img src={caret} alt="caret" />
             </button>
-            {this.state.isCurrencyOpen && <CurrencyDropdown />}
+            {this.state.isCurrencyOpen && <CurrencyDropdownContainer />}
           </div>
           <div className="cart-btn">
             <img src={cart} alt="cart" />

@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import ProductCard from "../components/ProductCard/ProductCard";
 import "./Category.scss";
 import { gql } from "@apollo/client";
+import ProductCardContainer from "../containers/ProductCardContainer";
 
 const GetAllProductInCategory = gql`
   query getCategories($category: CategoryInput) {
@@ -27,6 +28,8 @@ const GetAllProductInCategory = gql`
   }
 `;
 class Category extends Component {
+  
+
   render() {
     const { categoryName } = this.props.match.params;
     const category = {
@@ -44,7 +47,7 @@ class Category extends Component {
             {({ loading, error, data }) => {
               console.log(data);
               return data?.category.products.map((product) => (
-                <ProductCard product={product} key={product.id} />
+                <ProductCardContainer product={product} key={product.id} />
               ));
             }}
           </Query>
