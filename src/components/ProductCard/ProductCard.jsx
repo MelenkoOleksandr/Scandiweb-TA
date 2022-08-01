@@ -4,11 +4,11 @@ import cartWhite from "../../assets/cartWhite.png";
 class ProductCard extends Component {
   render() {
     // const {id, name, gallery, prices,inStock, brand} = this.props?.product
-
+    // console.log(this.props.currency);
     const price =
       this.props.product &&
       this.props.product.prices.find(
-        (price) => price.currency.label === this.props.currency.currency.label
+        (price) => price.currency.label === this.props.currency.label
       );
 
     return (

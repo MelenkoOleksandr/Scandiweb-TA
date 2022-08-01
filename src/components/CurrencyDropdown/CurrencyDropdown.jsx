@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 
 class CurrencyDropdown extends Component {
+
   handleCurrencyClick = (currency) => {
     this.props.handleSetCurrency(currency);
   };
 
   render() {
+    console.log(this.props.currencies);
     return (
       <ul className="currency-list">
         {this.props.currencies &&

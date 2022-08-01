@@ -7,7 +7,6 @@ import logo from "../../assets/logo.png";
 import caret from "../../assets/caret.png";
 import cart from "../../assets/cart.png";
 import CurrencyDropdownContainer from "../../containers/CurrencyDropdownContainer";
-import { GET_ALL_CATEGORIES } from "../../queries/queries";
 
 class Header extends Component {
   constructor(props) {

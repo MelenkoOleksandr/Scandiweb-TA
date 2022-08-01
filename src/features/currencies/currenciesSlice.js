@@ -4,8 +4,7 @@ import { GET_ALL_CURRENCIES } from './../../queries/queries';
 
 const getAllCurrencies = createAsyncThunk('', async (_, thunkAPI) => {
     const response = await client.query({query: GET_ALL_CURRENCIES})
-    console.log(response);
-    return response.data
+    return response.data.currencies
 })
 
 export const currenciesSlice = createSlice({

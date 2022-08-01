@@ -10,27 +10,31 @@ import client from "./app/client";
 import { GET_ALL_CURRENCIES } from "./queries/queries";
 import CategoryContainer from "./containers/CategoryContainer";
 import HeaderContainer from "./containers/HeaderContainer";
+import Spinner from "./components/Spinner/Spinner";
 class App extends Component {
-
-  componentWillMount() {
-    client.query({
-      query: GET_ALL_CURRENCIES,
-    }).then(result => this.props.handleSetCurrency(result.data.currencies[0]));
+  componentDidMount() {
+    this.props.getAllCategories();
+    this.props.handleGetAllCurrencies();
   }
 
   render() {
+    console.log(this.props.isContentLoaded);
     return (
       <BrowserRouter>
-        <HeaderContainer />
-        <div className="content">
-          <Switch>
-            <Route path="/:categoryName" >
-              <CategoryContainer />
-            </Route>
-            <Route path="/products/:productId" ><Product /></Route>
-            <Route index path="/cart" ><Cart /></Route>
-          </Switch>
-        </div>
+        {this.props.isContentLoaded ? (<>
+          <HeaderContainer />
+          <div className="content">
+            <Switch>
+              <Route path="/:categoryName" >
+                <CategoryContainer />
+              </Route>
+              <Route path="/products/:productId" ><Product /></Route>
+              <Route index path="/cart" ><Cart /></Route>
+            </Switch>
+          </div>
+        </> ) : <Spinner />}
+      
+       
 
       </BrowserRouter>
     )

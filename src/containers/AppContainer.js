@@ -1,9 +1,16 @@
 import { connect } from 'react-redux'
-import { setCurrency } from "../features/currency/currencySlice"
-import App from '../App';
+import { getAllCurrencies } from '../features/currencies/currenciesSlice';
 
-const mapDispatchToProps = dispatch => ({
-    handleSetCurrency: currency => dispatch(setCurrency(currency))
+import App from '../App';
+import { getAllCategories } from '../features/categories/categoriesSlice';
+
+const mapStateToProps = state => ({
+    isContentLoaded: !!(state.currencies && state.categories.categories)
 })
 
-export default connect(null, mapDispatchToProps)(App)
+const mapDispatchToProps = dispatch => ({
+    getAllCategories: () => dispatch(getAllCategories()),
+    handleGetAllCurrencies: () => dispatch(getAllCurrencies())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -3,11 +3,12 @@ import { setCurrency } from "../features/currency/currencySlice"
 import CurrencyDropdown from '../components/CurrencyDropdown/CurrencyDropdown';
 
 const mapStateToProps = state => ({
-    currencies: state.currencies
+    currencies: state.currencies.currencies
 })
 
 const mapDispatchToProps = dispatch => ({
-    handleSetCurrency: currency => dispatch(setCurrency(currency))
+    handleSetCurrency: currency => dispatch(setCurrency(currency)),
+   
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrencyDropdown)
