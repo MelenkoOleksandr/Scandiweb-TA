@@ -4,34 +4,28 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import Header from "./components/Header/Header";
 import Cart from "./pages/Cart";
-import Category from "./pages/Category";
 import Product from "./pages/Product";
-import { gql } from '@apollo/client';
 import client from "./app/client";
+import { GET_ALL_CURRENCIES } from "./queries/queries";
+import CategoryContainer from "./containers/CategoryContainer";
+import HeaderContainer from "./containers/HeaderContainer";
 class App extends Component {
 
   componentWillMount() {
     client.query({
-      query: gql`
-        {
-          currencies {
-            label
-            symbol
-          }
-        }
-      `,
+      query: GET_ALL_CURRENCIES,
     }).then(result => this.props.handleSetCurrency(result.data.currencies[0]));
   }
+
   render() {
     return (
       <BrowserRouter>
-        <Header />
+        <HeaderContainer />
         <div className="content">
           <Switch>
             <Route path="/:categoryName" >
-              <Category />
+              <CategoryContainer />
             </Route>
             <Route path="/products/:productId" ><Product /></Route>
             <Route index path="/cart" ><Cart /></Route>

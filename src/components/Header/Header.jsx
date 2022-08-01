@@ -7,14 +7,7 @@ import logo from "../../assets/logo.png";
 import caret from "../../assets/caret.png";
 import cart from "../../assets/cart.png";
 import CurrencyDropdownContainer from "../../containers/CurrencyDropdownContainer";
-
-const GET_ALL_CATEGORIES = gql`
-  query GetAllCategories {
-    categories {
-      name
-    }
-  }
-`;
+import { GET_ALL_CATEGORIES } from "../../queries/queries";
 
 class Header extends Component {
   constructor(props) {
@@ -26,6 +19,10 @@ class Header extends Component {
     this.handleCurrencyClick = this.handleCurrencyClick.bind(this);
   }
 
+  componentWillMount() {
+    this.props.getAllCategories();
+  }
+
   handleCurrencyClick() {
     this.setState({
       isCurrencyOpen: !this.state.isCurrencyOpen,
@@ -33,31 +30,23 @@ class Header extends Component {
   }
 
   render() {
-  
     return (
       <header>
         <nav className="navigation">
-          <ul className="navigation-list">
-            <Query query={GET_ALL_CATEGORIES}>
-              {({ loading, error, data }) => {
-                if (error) {
-                  console.log(error);
-                  return null;
-                }
-
-                return data?.categories.map(({ name }) => (
-                  <li className="navigation-item" key={name}>
-                    <NavLink
-                      activeClassName="navigation-item__active"
-                      to={`/${name}`}
-                    >
-                      {name}
-                    </NavLink>
-                  </li>
-                ));
-              }}
-            </Query>
-          </ul>
+          {this.props.categories.categories && (
+            <ul className="navigation-list">
+              {this.props.categories.categories.categories.map(({ name }) => (
+                <li className="navigation-item" key={name}>
+                  <NavLink
+                    activeClassName="navigation-item__active"
+                    to={`/${name}`}
+                  >
+                    {name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          )}
         </nav>
 
         <img className="logo" src={logo} alt="logo" />
