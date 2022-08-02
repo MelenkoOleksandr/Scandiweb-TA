@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
-import { getAllCategories } from '../features/categories/categoriesSlice';
+import { getAllProductsInCategory } from '../features/products/productsSlice';
 import Header from './../components/Header/Header';
 
 const mapStateToProps = state => ({
-    categories: state.categories
+    categories: state.categories,
+    currentCategory: state.categories.currentCategory
 })
 
 const mapDispatchToProps = dispatch => ({
-    getAllCategories: () => dispatch(getAllCategories())
+    handleCategoryChange: (category) => dispatch(getAllProductsInCategory(category)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

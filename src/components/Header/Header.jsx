@@ -1,12 +1,11 @@
 import { Component } from "react";
-import { gql } from "@apollo/client";
-import { Query } from "@apollo/client/react/components";
-import { NavLink } from "react-router-dom";
-import "./Header.scss";
 import logo from "../../assets/logo.png";
 import caret from "../../assets/caret.png";
 import cart from "../../assets/cart.png";
 import CurrencyDropdownContainer from "../../containers/CurrencyDropdownContainer";
+
+import "./Header.scss";
+import { NavLink } from "react-router-dom";
 
 class Header extends Component {
   constructor(props) {
@@ -15,19 +14,14 @@ class Header extends Component {
       isCurrencyOpen: false,
       isCartOpen: false,
     };
-    this.handleCurrencyClick = this.handleCurrencyClick.bind(this);
   }
 
-  componentWillMount() {
-    this.props.getAllCategories();
-  }
-
-  handleCurrencyClick() {
+  handleCurrencyClick = () => {
     this.setState({
       isCurrencyOpen: !this.state.isCurrencyOpen,
     });
-  }
-
+  };
+  
   render() {
     return (
       <header>
@@ -36,10 +30,7 @@ class Header extends Component {
             <ul className="navigation-list">
               {this.props.categories.categories.categories.map(({ name }) => (
                 <li className="navigation-item" key={name}>
-                  <NavLink
-                    activeClassName="navigation-item__active"
-                    to={`/${name}`}
-                  >
+                  <NavLink to={`/${name}`} activeClassName="navigation-item__active">
                     {name}
                   </NavLink>
                 </li>

@@ -18,6 +18,23 @@ export const GET_ALL_CATEGORIES = gql`
   }
 `;
 
+export const GET_PRODUCT_BY_Id = gql`
+ query GetProduct($id: String!) {
+  product(id: $id) {
+    name
+    gallery
+    description
+    category
+    attributes {
+      name
+      items {
+        displayValue
+      }
+    }
+  }
+}
+`
+
 export const GET_ALL_PRODUCTS_IN_CATEGORY = gql`
   query getCategories($category: CategoryInput) {
     category(input: $category) {
@@ -26,6 +43,7 @@ export const GET_ALL_PRODUCTS_IN_CATEGORY = gql`
         id
         name
         gallery
+        category
         prices {
           currency {
             label

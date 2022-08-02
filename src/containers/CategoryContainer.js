@@ -3,7 +3,9 @@ import { getAllProductsInCategory } from '../features/products/productsSlice';
 import Category from '../pages/Category';
 
 const mapStateToProps = state => ({
-    products: state.products
+    products: state.products.products,
+    isProductsLoading: state.products.isLoading,
+    currentCategory: state.categories.currentCategory
 })
 
 const mapDispatchToProps = dispatch => ({

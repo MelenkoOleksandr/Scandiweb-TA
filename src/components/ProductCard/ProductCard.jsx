@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import cartWhite from "../../assets/cartWhite.png";
 
 class ProductCard extends Component {
@@ -13,7 +14,10 @@ class ProductCard extends Component {
 
     return (
       <div className="product-card">
-        <div className="product-image__container">
+        <Link
+          to={`/${this.props.product.category}/${this.props.product.id}`}
+          className="product-image__container"
+        >
           <img
             className="product-image"
             src={this.props?.product.gallery[0]}
@@ -22,7 +26,7 @@ class ProductCard extends Component {
           <button className="cart-btn">
             <img src={cartWhite} alt="" />
           </button>
-        </div>
+        </Link>
 
         <div className="product-content">
           <h4 className="product-name">

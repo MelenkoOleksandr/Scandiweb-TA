@@ -5,7 +5,8 @@ import { GET_ALL_CATEGORIES } from './../../queries/queries';
 
 const getAllCategories = createAsyncThunk('categories/getAllCategories', async (_, thunkAPI) => {
     const response = await client.query({ query: GET_ALL_CATEGORIES })
-    thunkAPI.dispatch(getAllProductsInCategory(response.data.categories[0].name))
+    const currentCategory = response.data.categories[0].name
+    thunkAPI.dispatch(getAllProductsInCategory(currentCategory))
     return response.data
 })
 
