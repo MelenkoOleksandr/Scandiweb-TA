@@ -4,15 +4,23 @@ import removeItem from "../assets/removeItem.png";
 
 import "./Cart.scss";
 class Cart extends Component {
+  increaseCartAmount = (cartIndex) => {
+    this.props.increaseItemInCartAmount(cartIndex);
+  };
+
+  decreaseCartAmount = (cartIndex) => {
+    this.props.decreaseItemInCartAmount(cartIndex);
+  };
+
   render() {
-    console.log(this.props);
     return (
       <section className="cart">
         <h2 className="cart-title">CART</h2>
         <div className="cart-items">
           {this.props.cart &&
-            this.props.cart.map(
-              ({ name, gallery, attributes, prices, brand }) => (
+            this.props.cart.map((item, cartIndex) => {
+              const { id, name, gallery, attributes, prices, brand, amount } = item;
+              return (
                 <div className="cart-item">
                   <div className="item-desc">
                     <h4 className="item-brand">{brand}</h4>
@@ -25,56 +33,34 @@ class Cart extends Component {
                       <div className="item-sizes">
                         <h5 className="sizes-title">{name}:</h5>
                         <ul className="sizes">
-                          {items.map((item) =>  (
-                              <li
-                                className={`size ${
-                                  item.displayValue === selected.displayValue
-                                    ? "selected"
-                                    : ""
-                                }`}
-                              >
-                                {item.displayValue}
-                              </li>
-                            )
-                          )}
+                          {items.map((item) => (
+                            <li
+                              className={`size ${
+                                item.displayValue === selected.displayValue
+                                  ? "selected"
+                                  : ""
+                              }`}
+                            >
+                              {item.displayValue}
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     ))}
-
-                    {/* <div className="item-sizes">
-                          <h5 className="sizes-title">SIZE:</h5>
-                          <ul className="sizes">
-                            <li className="size">XS</li>
-                            <li className="size selected">S</li>
-                            <li className="size">M</li>
-                            <li className="size">L</li>
-                          </ul>
-                        </div>
-                        <div className="item-colors">
-                          <h5 className="colors-title">COLOR:</h5>
-                          <ul className="colors">
-                            <li
-                              className="color selected"
-                              style={{ background: "black" }}
-                            ></li>
-                            <li
-                              className="color"
-                              style={{ background: "blue" }}
-                            ></li>
-                            <li
-                              className="color"
-                              style={{ background: "orange" }}
-                            ></li>
-                          </ul>
-                        </div> */}
                   </div>
                   <div className="item-actions">
                     <div className="item-amount">
-                      <button className="amount-btn">
+                      <button
+                        onClick={() => this.increaseCartAmount(cartIndex)}
+                        className="amount-btn"
+                      >
                         <img src={addItem} alt="add button" />
                       </button>
-                      <div className="amount">1</div>
-                      <button className="amount-btn">
+                      <div className="amount">{amount}</div>
+                      <button
+                        onClick={() => this.decreaseCartAmount(cartIndex)}
+                        className="amount-btn"
+                      >
                         <img src={removeItem} alt="remove button" />
                       </button>
                     </div>
@@ -87,8 +73,8 @@ class Cart extends Component {
                     </div>
                   </div>
                 </div>
-              )
-            )}
+              );
+            })}
         </div>
         <div className="total-container">
           <div className="tax">

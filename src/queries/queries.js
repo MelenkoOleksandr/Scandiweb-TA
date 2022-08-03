@@ -21,6 +21,7 @@ export const GET_ALL_CATEGORIES = gql`
 export const GET_PRODUCT_BY_Id = gql`
  query GetProduct($id: String!) {
   product(id: $id) {
+    id
     name
     gallery
     description

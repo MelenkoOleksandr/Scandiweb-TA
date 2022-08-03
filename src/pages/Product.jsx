@@ -19,7 +19,7 @@ class Product extends Component {
   }
 
   handleAddClick = () => {
-    this.props.addProductToCart({...this.props.product, attributes: this.state.selectedAttributes});
+    this.props.addProductToCart({...this.props.product, attributes: this.state.selectedAttributes, amount: 1});
   };
 
 
@@ -27,7 +27,6 @@ class Product extends Component {
     if (this.props.isProductLoading || !this.props.product) {
       return <Spinner />;
     }
-    console.log(this.state.selectedAttributes);
 
     const { name, gallery, description, attributes, prices, brand } =
       this.props.product;
