@@ -1,39 +1,33 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import Attribute from "../components/Attribute/Attribute";
 import Spinner from "../components/Spinner/Spinner";
 import "./Product.scss";
 
 class Product extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      attributes: props.product
-        ? props.product.attributes.map((attribute) => ({
-            ...attribute,
-            selectedValue: attribute.items[0],
-          }))
-        : [],
-    };
+    super(props)
+    this.state = {selectedAttributes: []}
   }
+
   componentDidMount() {
     this.props.getProductById(this.props.match.params.productId);
   }
+
+  addToSelectedAttributes = (attr, value) => {
+    this.setState({selectedAttributes: [...this.state.selectedAttributes.filter(attribute => attribute.name !== attr.name), {...attr, selected: value}]})
+  }
+
   handleAddClick = () => {
-    this.props.addProductToCart(this.props.product);
+    this.props.addProductToCart({...this.props.product, attributes: this.state.selectedAttributes});
   };
-  changeAttribute = (name, displayValue) => {
-    this.setState({
-      attributes: this.state.attributes.map((attr) =>
-        attr.name === name ? { ...attr, selectedValue: displayValue } : attr
-      ),
-    });
-  };
+
+
   render() {
     if (this.props.isProductLoading || !this.props.product) {
       return <Spinner />;
     }
-
-    console.log(this.state.attributes);
+    console.log(this.state.selectedAttributes);
 
     const { name, gallery, description, attributes, prices, brand } =
       this.props.product;
@@ -52,35 +46,10 @@ class Product extends Component {
           <h3 className="brand">{brand}</h3>
           <h4 className="name">{name}</h4>
 
-          {attributes.map(({ name, items }) => (
-            <>
-              <h4 className="attribute-title">{name}:</h4>
-              <ul className="attribute-list">
-                {items.map(({ displayValue }) => {
-                  const attribute = this.state.attributes.find(
-                    (attribute) => attribute.name === name
-                  );
-
-                  console.log(attribute);
-
-                  const selectedClass =
-                    attribute &&
-                    attribute.selectedValue.displayValue === displayValue
-                      ? "selected"
-                      : "";
-
-                  return (
-                    <li
-                      onClick={() => this.changeAttribute(name, displayValue)}
-                      className={`attribute-list__item ${selectedClass}`}
-                    >
-                      {displayValue}
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
+          {attributes.map((attribute) => (
+            <Attribute addToSelectedAttributes={this.addToSelectedAttributes} attribute={attribute} />
           ))}
+
           <div className="price">
             <h4 className="price-title">PRICE:</h4>
             <h5 className="price-amount">
