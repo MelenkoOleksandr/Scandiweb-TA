@@ -25,6 +25,13 @@ export const GET_PRODUCT_BY_Id = gql`
     gallery
     description
     category
+    prices {
+      currency {
+        label
+        symbol
+      }
+      amount
+    }
     attributes {
       name
       items {
