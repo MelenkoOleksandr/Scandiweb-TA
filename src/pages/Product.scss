@@ -58,9 +58,12 @@
         justify-content: center;
         border: 1px solid black;
         transition: 0.3s ease-in-out;
-        &:hover {
+        &.selected {
             color: white;
         background-color: black;
+        }
+        &:hover {
+          cursor: pointer;
         }
     }
     }

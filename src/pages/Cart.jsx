@@ -4,109 +4,79 @@ import removeItem from "../assets/removeItem.png";
 import coat from '../assets/coat.png';
 import "./Cart.scss"
 class Cart extends Component {
+ 
     render() {
+       console.log(this.props);
         return (
           <section className="cart">
             <h2 className="cart-title">CART</h2>
             <div className="cart-items">
-              <div className="cart-item">
-                <div className="item-desc">
-                  <h4 className="item-brand">Apollo</h4>
-                  <h3 className="item-type">Running Short</h3>
-                  <h5 className="item-price">$50.00</h5>
+              {this.props.cart &&
+                this.props.cart.map(
+                  ({
+                    name,
+                    gallery,
+                    description,
+                    attributes,
+                    prices,
+                    brand,
+                  }) => (
+                    <div className="cart-item">
+                      <div className="item-desc">
+                        <h4 className="item-brand">{brand}</h4>
+                        <h3 className="item-type">{name}</h3>
+                        <h5 className="item-price">
+                          {prices[0].amount} {prices[0].currency.symbol}
+                        </h5>
 
-                  <div className="item-sizes">
-                    <h5 className="sizes-title">SIZE:</h5>
-                    <ul className="sizes">
-                      <li className="size">XS</li>
-                      <li className="size selected">S</li>
-                      <li className="size">M</li>
-                      <li className="size">L</li>
-                    </ul>
-                  </div>
-                  <div className="item-colors">
-                    <h5 className="colors-title">COLOR:</h5>
-                    <ul className="colors">
-                      <li
-                        className="color selected"
-                        style={{ background: "black" }}
-                      ></li>
-                      <li className="color" style={{ background: "blue" }}></li>
-                      <li
-                        className="color"
-                        style={{ background: "orange" }}
-                      ></li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="item-actions">
-                  <div className="item-amount">
-                    <button className="amount-btn">
-                      <img src={addItem} alt="add button" />
-                    </button>
-                    <div className="amount">1</div>
-                    <button className="amount-btn">
-                      <img src={removeItem} alt="remove button" />
-                    </button>
-                  </div>
-                  <div className="item-image">
-                    <img className="image" src={coat} alt="coat" />
-                    <div className="changer">
-                      <div className="changer-btn prev-img">{"<"}</div>
-                      <div className="changer-btn next-img">{">"}</div>
+                        {/* <div className="item-sizes">
+                          <h5 className="sizes-title">SIZE:</h5>
+                          <ul className="sizes">
+                            <li className="size">XS</li>
+                            <li className="size selected">S</li>
+                            <li className="size">M</li>
+                            <li className="size">L</li>
+                          </ul>
+                        </div>
+                        <div className="item-colors">
+                          <h5 className="colors-title">COLOR:</h5>
+                          <ul className="colors">
+                            <li
+                              className="color selected"
+                              style={{ background: "black" }}
+                            ></li>
+                            <li
+                              className="color"
+                              style={{ background: "blue" }}
+                            ></li>
+                            <li
+                              className="color"
+                              style={{ background: "orange" }}
+                            ></li>
+                          </ul>
+                        </div> */}
+                      </div>
+                      <div className="item-actions">
+                        <div className="item-amount">
+                          <button className="amount-btn">
+                            <img src={addItem} alt="add button" />
+                          </button>
+                          <div className="amount">1</div>
+                          <button className="amount-btn">
+                            <img src={removeItem} alt="remove button" />
+                          </button>
+                        </div>
+                        <div className="item-image">
+                          <img className="image" src={gallery[0]} alt="coat" />
+                          <div className="changer">
+                            <div className="changer-btn prev-img">{"<"}</div>
+                            <div className="changer-btn next-img">{">"}</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div className="cart-item">
-                <div className="item-desc">
-                  <h4 className="item-brand">Apollo</h4>
-                  <h3 className="item-type">Running Short</h3>
-                  <h5 className="item-price">$50.00</h5>
-
-                  <div className="item-sizes">
-                    <h5 className="sizes-title">SIZE:</h5>
-                    <ul className="sizes">
-                      <li className="size">XS</li>
-                      <li className="size selected">S</li>
-                      <li className="size">M</li>
-                      <li className="size">L</li>
-                    </ul>
-                  </div>
-                  <div className="item-colors">
-                    <h5 className="colors-title">COLOR:</h5>
-                    <ul className="colors">
-                      <li
-                        className="color selected"
-                        style={{ background: "black" }}
-                      ></li>
-                      <li className="color" style={{ background: "blue" }}></li>
-                      <li
-                        className="color"
-                        style={{ background: "orange" }}
-                      ></li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="item-actions">
-                  <div className="item-amount">
-                    <button className="amount-btn">
-                      <img src={addItem} alt="add button" />
-                    </button>
-                    <div className="amount">1</div>
-                    <button className="amount-btn">
-                      <img src={removeItem} alt="remove button" />
-                    </button>
-                  </div>
-                  <div className="item-image">
-                    <img className="image" src={coat} alt="coat" />
-                    <div className="changer">
-                      <div className="changer-btn prev-img">{"<"}</div>
-                      <div className="changer-btn next-img">{">"}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  )
+                )}
             </div>
             <div className="total-container">
               <div className="tax">

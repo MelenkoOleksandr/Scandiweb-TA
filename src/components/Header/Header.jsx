@@ -5,7 +5,7 @@ import cart from "../../assets/cart.png";
 import CurrencyDropdownContainer from "../../containers/CurrencyDropdownContainer";
 
 import "./Header.scss";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 class Header extends Component {
   constructor(props) {
@@ -52,9 +52,9 @@ class Header extends Component {
             </button>
             {this.state.isCurrencyOpen && <CurrencyDropdownContainer />}
           </div>
-          <div className="cart-btn">
+          <Link to={'/cart'} className="cart-btn">
             <img src={cart} alt="cart" />
-          </div>
+          </Link>
         </div>
       </header>
     );
