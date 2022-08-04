@@ -2,6 +2,7 @@ import { Component } from "react";
 import { withRouter } from "react-router-dom";
 import SkeletonLoader from "../components/Skeleton/Skeleton";
 import ProductCardContainer from "../containers/ProductCardContainer";
+import { capitalize } from "../helpers/nameHelper";
 
 import "./Category.scss";
 
@@ -33,7 +34,7 @@ class Category extends Component {
     console.log(this.props.products);
     return (
       <section className="category-container">
-        <h2 className="category-title">{currentCategory}</h2>
+        <h2 className="category-title">{capitalize(currentCategory)}</h2>
         <div className="products">
           {this.props.isProductsLoading
             ? skeletonArray.map((el, index) => <SkeletonLoader key={index} />)

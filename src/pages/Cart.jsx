@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import addItem from "../assets/addItem.png";
 import removeItem from "../assets/removeItem.png";
+import CartProductSlider from "../components/CartProductSlider/CartProductSlider";
+import { TAX } from "../constants/price";
+import { getPriceStrByCurrency } from "../helpers/priceAndCurrencyHelper";
 
 import "./Cart.scss";
 class Cart extends Component {
@@ -19,15 +22,18 @@ class Cart extends Component {
         <div className="cart-items">
           {this.props.cart &&
             this.props.cart.map((item, cartIndex) => {
-              const { id, name, gallery, attributes, prices, brand, amount } = item;
+              const { name, gallery, attributes, prices, brand, amount } =
+                item;
+                const price = getPriceStrByCurrency(
+                  prices,
+                  this.props.currency
+                );
               return (
                 <div className="cart-item">
                   <div className="item-desc">
                     <h4 className="item-brand">{brand}</h4>
                     <h3 className="item-type">{name}</h3>
-                    <h5 className="item-price">
-                      {prices[0].amount} {prices[0].currency.symbol}
-                    </h5>
+                    <h5 className="item-price">{price}</h5>
 
                     {attributes.map(({ name, items, selected }) => (
                       <div className="item-sizes">
@@ -64,13 +70,7 @@ class Cart extends Component {
                         <img src={removeItem} alt="remove button" />
                       </button>
                     </div>
-                    <div className="item-image">
-                      <img className="image" src={gallery[0]} alt="coat" />
-                      <div className="changer">
-                        <div className="changer-btn prev-img">{"<"}</div>
-                        <div className="changer-btn next-img">{">"}</div>
-                      </div>
-                    </div>
+                    <CartProductSlider gallery={gallery}/>
                   </div>
                 </div>
               );
@@ -78,16 +78,21 @@ class Cart extends Component {
         </div>
         <div className="total-container">
           <div className="tax">
-            <div className="total-text">Tax 21%:</div>
-            <div className="total-amount ">$42.00</div>
+            <div className="total-text">Tax {TAX * 100}%:</div>
+            <div className="total-amount ">
+              {this.props.currency.symbol}
+              {this.props.taxes}
+            </div>
           </div>
           <div className="quantity">
             <div className="total-text">Quantity:</div>
-            <div className="total-amount">3</div>
+            <div className="total-amount">{this.props.cartItemsAmount}</div>
           </div>
           <div className="total">
             <div className="total-text result">Total:</div>
-            <div className="total-amount">$200.00</div>
+            <div className="total-amount">
+              {this.props.currency.symbol}{this.props.total}
+            </div>
           </div>
           <button className="order-btn">ORDER</button>
         </div>

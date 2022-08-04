@@ -12,7 +12,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 25px 100px;
-  z-index: 2;
+  z-index: 50;
 
   .navigation-list {
     padding-left: 0;
@@ -21,15 +21,26 @@ header {
     flex-direction: row;
     .navigation-item {
       font-size: fonts.$font16;
+      text-transform: uppercase;
       padding: 5px 16px;
       transition: 0.5s;
       &:hover {
         cursor: pointer;
       }
       .navigation-item__active {
+        position: relative;
         font-weight: fonts.$bold;
         color: colors.$green;
-        border-bottom: 2px solid colors.$green;
+       
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -15px;
+          width: 100%;
+          height: 2px;
+          background-color: colors.$green;
+        }
       }
     }
   }

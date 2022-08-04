@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import addItem from "../../assets/addItem.png";
 import removeItem from "../../assets/removeItem.png";
 import "./MiniCart.scss";
+import { getPriceStrByCurrency } from './../../helpers/priceAndCurrencyHelper';
 
 class MiniCart extends Component {
   increaseCartAmount = (cartIndex) => {
@@ -24,14 +25,13 @@ class MiniCart extends Component {
           {this.props.cart &&
             this.props.cart.map((item, cartIndex) => {
               const { name, gallery, attributes, prices, brand, amount } = item;
+               const price = getPriceStrByCurrency(prices, this.props.currency);
               return (
                 <div className="cart-item">
                   <div className="item-desc">
                     {brand && <h4 className="item-brand">{brand}</h4>}
                     {name && <h3 className="item-type">{name}</h3>}
-                    <h5 className="item-price">
-                      {prices[0].amount} {prices[0].currency.symbol}
-                    </h5>
+                    <h5 className="item-price">{price}</h5>
 
                     {attributes.map(({ name, items, selected }) => (
                       <div className="item-sizes">
@@ -84,7 +84,10 @@ class MiniCart extends Component {
         </div>
         <div className="total">
           <div className="total-title">Total</div>
-          <div className="total-amount">{this.props.total}</div>
+          <div className="total-amount">
+            {this.props.currency.symbol}
+            {this.props.total}
+          </div>
         </div>
 
         <div className="minicart-btns">

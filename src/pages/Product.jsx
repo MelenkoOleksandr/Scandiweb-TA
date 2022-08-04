@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Attribute from "../components/Attribute/Attribute";
 import Spinner from "../components/Spinner/Spinner";
+import { getPriceStrByCurrency } from "../helpers/priceAndCurrencyHelper";
 import "./Product.scss";
 
 class Product extends Component {
@@ -28,9 +29,10 @@ class Product extends Component {
       return <Spinner />;
     }
 
-    const { name, gallery, description, attributes, prices, brand } =
+    const { name, gallery, inStock, description, attributes, prices, brand } =
       this.props.product;
-
+  
+    const price = getPriceStrByCurrency(prices, this.props.currency);
     return (
       <section className="product">
         <div className="product-images">
@@ -46,16 +48,17 @@ class Product extends Component {
           <h4 className="name">{name}</h4>
 
           {attributes.map((attribute) => (
-            <Attribute addToSelectedAttributes={this.addToSelectedAttributes} attribute={attribute} />
+            <Attribute
+              addToSelectedAttributes={this.addToSelectedAttributes}
+              attribute={attribute}
+            />
           ))}
 
           <div className="price">
             <h4 className="price-title">PRICE:</h4>
-            <h5 className="price-amount">
-              {prices[0].amount} {prices[0].currency.symbol}
-            </h5>
+            <h5 className="price-amount">{price}</h5>
           </div>
-          <button onClick={this.handleAddClick} className="btn-add">
+          <button disabled={!inStock} onClick={this.handleAddClick} className="btn-add">
             Add to Cart
           </button>
           <div

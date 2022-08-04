@@ -7,6 +7,7 @@ import Product from '../pages/Product';
 const mapStateToProps = state => ({
     isProductLoading: state.product.isLoading,
     product: state.product.product,
+    currency: state.currencies.currentCurrency
 })
 
 const mapDispatchToProps = dispatch => ({

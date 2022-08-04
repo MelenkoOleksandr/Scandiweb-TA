@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class CurrencyDropdown extends Component {
   handleCurrencyClick = (currency) => {
     this.props.handleSetCurrency(currency);
+    this.props.closeAfterSelect()
   };
 
   render() {

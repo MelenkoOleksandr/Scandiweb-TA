@@ -67,7 +67,9 @@ class Header extends Component {
               </button>
               {this.state.isCurrencyOpen && (
                 <OutsideClickChecker close={this.toggleIsCurrencyOpen}>
-                  <CurrencyDropdownContainer />
+                  <CurrencyDropdownContainer
+                    closeAfterSelect={this.toggleIsCurrencyOpen}
+                  />
                 </OutsideClickChecker>
               )}
             </div>
