@@ -27,6 +27,7 @@
     margin-top: 100px;
     .product-image__container {
         position: relative;
+        z-index: 0;
         height: 300px;
         margin-bottom: 20px;
         .cart-btn {

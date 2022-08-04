@@ -16,18 +16,23 @@ export const cartSlice = createSlice({
         },
         increaseProductAmount: (state, action) => {
             state.cart[action.payload].amount = state.cart[action.payload].amount + 1
+            localStorage.setItem('cart', JSON.stringify(state.cart))
         },
         decreaseProductAmount: (state, action) => {
-            console.log(state.cart[action.payload].amount);
             if (state.cart[action.payload].amount === 1) {
                 state.cart.splice(action.payload, 1)
             } else {
                 state.cart[action.payload].amount = state.cart[action.payload].amount - 1
             }
+            localStorage.setItem('cart', JSON.stringify(state.cart))
+        },
+        checkout: (state) => {
+            state.cart = []
+            localStorage.setItem('cart', JSON.stringify(state.cart))
         }
     }
 })
 
-export const { restoreCart, addProduct, increaseProductAmount, decreaseProductAmount } = cartSlice.actions
+export const { restoreCart, addProduct, increaseProductAmount, decreaseProductAmount, checkout } = cartSlice.actions
 
 export default cartSlice.reducer
