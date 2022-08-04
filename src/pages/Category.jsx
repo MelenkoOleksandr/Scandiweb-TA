@@ -31,7 +31,6 @@ class Category extends Component {
   render() {
     const currentCategory = this.props.match.params.category || "all";
     const skeletonArray = new Array(6).fill(0);
-    console.log(this.props.products);
     return (
       <section className="category-container">
         <h2 className="category-title">{capitalize(currentCategory)}</h2>

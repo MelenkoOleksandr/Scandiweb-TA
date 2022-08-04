@@ -4,6 +4,7 @@ import addItem from "../../assets/addItem.png";
 import removeItem from "../../assets/removeItem.png";
 import "./MiniCart.scss";
 import { getPriceStrByCurrency } from './../../helpers/priceAndCurrencyHelper';
+import Attribute from "../Attribute/Attribute";
 
 class MiniCart extends Component {
   increaseCartAmount = (cartIndex) => {
@@ -33,23 +34,8 @@ class MiniCart extends Component {
                     {name && <h3 className="item-type">{name}</h3>}
                     <h5 className="item-price">{price}</h5>
 
-                    {attributes.map(({ name, items, selected }) => (
-                      <div className="item-sizes">
-                        <h5 className="sizes-title">{name}:</h5>
-                        <ul className="sizes">
-                          {items.map((item) => (
-                            <li
-                              className={`size ${
-                                item.displayValue === selected.displayValue
-                                  ? "selected"
-                                  : ""
-                              }`}
-                            >
-                              {item.displayValue}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    {attributes.map((attribute) => (
+                      <Attribute editable={false} attribute={attribute}/>
                     ))}
                   </div>
                   <div className="item-actions">

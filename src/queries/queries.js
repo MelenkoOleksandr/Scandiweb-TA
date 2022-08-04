@@ -57,7 +57,9 @@ export const GET_ALL_PRODUCTS_IN_CATEGORY = gql`
         category
         attributes {
           name
+          type
           items {
+            value
             displayValue
           }
         }

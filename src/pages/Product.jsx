@@ -20,7 +20,7 @@ class Product extends Component {
   }
 
   handleAddClick = () => {
-    this.props.addProductToCart({...this.props.product, attributes: this.state.selectedAttributes, amount: 1});
+    this.props.addProductToCart({...this.props.product, attributes: this.state.selectedAttributes});
   };
 
 
@@ -51,6 +51,7 @@ class Product extends Component {
             <Attribute
               addToSelectedAttributes={this.addToSelectedAttributes}
               attribute={attribute}
+              editable={true}
             />
           ))}
 

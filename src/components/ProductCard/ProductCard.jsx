@@ -29,11 +29,9 @@ class ProductCard extends Component {
   };
 
   handleAddClick = () => {
-    console.log("clicked");
     this.props.addProductToCart({
       ...this.props.product,
-      attributes: this.state.selectedAttributes,
-      amount: 1,
+      attributes: this.state.selectedAttributes
     });
   };
 
@@ -81,6 +79,7 @@ class ProductCard extends Component {
               <Attribute
                 addToSelectedAttributes={this.addToSelectedAttributes}
                 attribute={attr}
+                editable={true}
               />
             ))}
             <button onClick={this.handleAddClick} className="confirm-btn">
