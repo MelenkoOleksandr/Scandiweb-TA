@@ -2,8 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import client from './../../app/client';
 import { GET_ALL_CURRENCIES } from './../../queries/queries';
 
-const getAllCurrencies = createAsyncThunk('', async (_, thunkAPI) => {
-    const response = await client.query({query: GET_ALL_CURRENCIES})
+export const getAllCurrencies = createAsyncThunk('currencies/getAllCurrrencies', async (_, thunkAPI) => {
+    const response = await client.query({ query: GET_ALL_CURRENCIES })
+    thunkAPI.dispatch(setCurrency(response.data.currencies[0]))
     return response.data.currencies
 })
 
@@ -11,14 +12,21 @@ export const currenciesSlice = createSlice({
     name: 'currencies',
     initialState: {
         currencies: null,
+        currentCurrency: null,
+    },
+    reducers: {
+        setCurrency: (state, action) => {
+            console.log(action.payload);
+            state.currentCurrency = action.payload
+        },
     },
    extraReducers: builder => {
-       builder.addCase(getAllCurrencies.fulfilled, (state, action) => {
+        builder.addCase(getAllCurrencies.fulfilled, (state, action) => {
             state.currencies = action.payload
-       })
-   }
+        })
+    }
 })
 
-export  { getAllCurrencies }
+export const { setCurrency } = currenciesSlice.actions
 
 export default currenciesSlice.reducer

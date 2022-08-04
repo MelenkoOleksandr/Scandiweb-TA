@@ -1,14 +1,14 @@
 import {connect} from 'react-redux'
-import { setCurrency } from "../features/currency/currencySlice"
 import CurrencyDropdown from '../components/CurrencyDropdown/CurrencyDropdown';
+import { setCurrency } from '../features/currencies/currenciesSlice';
 
 const mapStateToProps = state => ({
-    currencies: state.currencies.currencies
+    currencies: state.currencies.currencies,
+    currentCurrency: state.currencies.currentCurrency
 })
 
 const mapDispatchToProps = dispatch => ({
     handleSetCurrency: currency => dispatch(setCurrency(currency)),
-   
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrencyDropdown)
