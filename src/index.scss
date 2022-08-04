@@ -1,29 +1,38 @@
-@use './styles/fonts.scss';
-@use './styles/colors.scss';
+@use "./styles/fonts.scss";
+@use "./styles/colors.scss";
 
 body {
-  margin: 0;
-  font-family: fonts.$raleway;
+    margin: 0;
+    font-family: fonts.$raleway;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro,
+        Menlo,
+        Monaco,
+        Consolas,
+        "Courier New",
+        monospace;
 }
 
 .content {
-  padding-top: 80px;
+    padding-top: 80px;
 }
 
 ul {
-  padding-left: 0;
+    padding-left: 0;
 }
 
 a {
-  text-decoration: none;
-  color: colors.$black;
+    color: colors.$black;
+    text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
 }
