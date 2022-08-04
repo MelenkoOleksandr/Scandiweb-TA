@@ -1,36 +1,40 @@
-.attributes-selector__wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.attributes-selector__wrapper {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     min-height: 100vh;
-    z-index: 100;
-    background-color: rgba($color: #000000, $alpha: 0.5);
+    background-color: rgba($color: #000000, $alpha: 50%);
+
     .attributes-content {
+
         .title {
+            margin-bottom: 30px;
             font-weight: bold;
             font-size: 24px;
-            margin-bottom: 30px;
         }
-        border-radius: 15px;
-        padding: 30px;
+
         box-sizing: border-box;
-        background-color: white;
         width: 350px;
         min-height: 200px;
+        padding: 30px;
+        background-color: white;
+        border-radius: 15px;
+
         .confirm-btn {
-            margin-top: 20px;
-            background-color: green;
-            width: 100px;
-            border: none;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 15px 20px;
             box-sizing: border-box;
+            width: 100px;
+            margin-top: 20px;
+            padding: 15px 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            background-color: green;
+            border: none;
         }
     }
 }

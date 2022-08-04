@@ -42,7 +42,7 @@ class Attribute extends Component {
 
             return (
               <li
-                onClick={() => this.changeSelected(this.props.attribute, item)}
+                onClick={this.props.editable ? () => this.changeSelected(this.props.attribute, item) : () => {}}
                 className={`attribute-list__item ${selectedClass}`}
                 style={{backgroundColor: item.value}}
               >

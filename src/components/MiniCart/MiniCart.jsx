@@ -41,20 +41,14 @@ class MiniCart extends Component {
                   <div className="item-actions">
                     <div className="item-amount">
                       <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          this.increaseCartAmount(cartIndex);
-                        }}
+                        onClick={() => this.increaseCartAmount(cartIndex)}
                         className="amount-btn"
                       >
                         <img src={addItem} alt="add button" />
                       </button>
                       <div className="amount">{amount}</div>
                       <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          this.decreaseCartAmount(cartIndex);
-                        }}
+                        onClick={() => this.decreaseCartAmount(cartIndex)}
                         className="amount-btn"
                       >
                         <img src={removeItem} alt="remove button" />
