@@ -36,7 +36,9 @@ export const GET_PRODUCT_BY_Id = gql`
     }
     attributes {
       name
+      type
       items {
+        value
         displayValue
       }
     }
@@ -53,6 +55,12 @@ export const GET_ALL_PRODUCTS_IN_CATEGORY = gql`
         name
         gallery
         category
+        attributes {
+          name
+          items {
+            displayValue
+          }
+        }
         prices {
           currency {
             label

@@ -8,6 +8,7 @@ import "./Header.scss";
 import { NavLink } from "react-router-dom";
 import MiniCartContainer from "../../containers/MiniCartContainer";
 import OutsideClickChecker from "../OutsideClickChecker/OutsideClickChecker";
+import CartBadge from "../CartBadge/CartBadge";
 
 class Header extends Component {
   constructor(props) {
@@ -33,6 +34,16 @@ class Header extends Component {
     this.setState({ isMiniCartOpen: !this.state.isMiniCartOpen });
   };
 
+  closeMiniCart = () => {
+    document.body.style.overflow = "visible";
+    this.setState({ isMiniCartOpen: false });
+  }
+  
+  showMiniCart = () => {
+    document.body.style.overflow = "hidden";
+    this.setState({ isMiniCartOpen: true });
+  }
+
   render() {
     return (
       <>
@@ -57,14 +68,11 @@ class Header extends Component {
           <img className="logo" src={logo} alt="logo" />
 
           <div className="actions">
-            <div className="currency">
+            <div onClick={this.toggleIsCurrencyOpen} className="currency">
               $
-              <button
-                className="currency-caret"
-                onClick={this.toggleIsCurrencyOpen}
-              >
+              <div className="currency-caret">
                 <img src={caret} alt="caret" />
-              </button>
+              </div>
               {this.state.isCurrencyOpen && (
                 <OutsideClickChecker close={this.toggleIsCurrencyOpen}>
                   <CurrencyDropdownContainer
@@ -73,8 +81,9 @@ class Header extends Component {
                 </OutsideClickChecker>
               )}
             </div>
-            <div className="cart-btn" onClick={this.toggleMiniCart}>
-              <img src={cart} alt="cart" />
+            <div onClick={this.toggleMiniCart} className="cart-btn">
+              <CartBadge cartItemsAmount={this.props.cartItemsAmount} />
+
               {this.state.isMiniCartOpen && (
                 <OutsideClickChecker close={this.toggleMiniCart}>
                   <MiniCartContainer />

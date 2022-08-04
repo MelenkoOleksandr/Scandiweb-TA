@@ -62,11 +62,22 @@
         transition: 0.3s ease-in-out;
         &.selected {
             color: white;
-        background-color: black;
+            background-color: black;
         }
         &:hover {
           cursor: pointer;
         }
+    }
+    &.colors {
+      .attribute-list__item {
+        border: none;
+        width: 32px;
+        height: 32px;
+        &.selected {
+        box-shadow: 0 0 0 2px white,
+          0 0 0 4px green;
+      }
+      }
     }
     }
     .price {

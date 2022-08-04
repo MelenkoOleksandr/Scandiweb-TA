@@ -97,3 +97,25 @@ header {
     }
   }
 }
+
+.cart-btn_icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .cart-badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    right: -12px;
+    top: -12px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+  }
+}

@@ -18,12 +18,13 @@ class Attribute extends Component {
   };
 
   render() {
-    const { name, items } = this.props.attribute;
+    const { name, items, type } = this.props.attribute;
+    console.log(type);
 
     return (
       <div className="attribute">
         <h4 className="attribute-title">{name}:</h4>
-        <ul className="attribute-list">
+        <ul className={`attribute-list ${type === 'swatch' ? 'colors' : ''}`}>
           {items.map((item) => {
             const selectedClass =
               item.displayValue === this.state.selected.displayValue
@@ -34,8 +35,9 @@ class Attribute extends Component {
               <li
                 onClick={() => this.changeSelected(this.props.attribute, item)}
                 className={`attribute-list__item ${selectedClass}`}
+                style={{backgroundColor: item.value}}
               >
-                {item.displayValue}
+                {type !== 'swatch' ? item.displayValue : ''}
               </li>
             );
           })}
