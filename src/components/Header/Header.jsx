@@ -81,11 +81,17 @@ class Header extends Component {
                 </OutsideClickChecker>
               )}
             </div>
-            <div onClick={this.toggleMiniCart} className="cart-btn">
-              <CartBadge cartItemsAmount={this.props.cartItemsAmount} />
+            <div className="cart-btn">
+              <CartBadge
+                toggleMiniCart={this.toggleMiniCart}
+                cartItemsAmount={this.props.cartItemsAmount}
+              />
 
               {this.state.isMiniCartOpen && (
-                <OutsideClickChecker close={this.toggleMiniCart}>
+                <OutsideClickChecker
+                  itemToAvoid={"cart-btn_icon"}
+                  close={this.toggleMiniCart}
+                >
                   <MiniCartContainer />
                 </OutsideClickChecker>
               )}

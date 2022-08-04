@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import addItem from "../../assets/addItem.png";
 import removeItem from "../../assets/removeItem.png";
 import "./MiniCart.scss";
-import { getPriceStrByCurrency } from './../../helpers/priceAndCurrencyHelper';
+import { getPriceStrByCurrency } from "./../../helpers/priceAndCurrencyHelper";
 import Attribute from "../Attribute/Attribute";
 
 class MiniCart extends Component {
@@ -26,7 +26,7 @@ class MiniCart extends Component {
           {this.props.cart &&
             this.props.cart.map((item, cartIndex) => {
               const { name, gallery, attributes, prices, brand, amount } = item;
-               const price = getPriceStrByCurrency(prices, this.props.currency);
+              const price = getPriceStrByCurrency(prices, this.props.currency);
               return (
                 <div className="cart-item">
                   <div className="item-desc">
@@ -35,7 +35,7 @@ class MiniCart extends Component {
                     <h5 className="item-price">{price}</h5>
 
                     {attributes.map((attribute) => (
-                      <Attribute editable={false} attribute={attribute}/>
+                      <Attribute editable={false} attribute={attribute} />
                     ))}
                   </div>
                   <div className="item-actions">
@@ -80,13 +80,7 @@ class MiniCart extends Component {
           <Link to={"/cart"} className="bag-btn">
             View Bag
           </Link>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              this.props.handleChekout();
-            }}
-            className="checkout-btn"
-          >
+          <button onClick={this.props.handleChekout} className="checkout-btn">
             Check out
           </button>
         </div>

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import cartWhite from "../../assets/cartWhite.png";
 import { getPriceStrByCurrency } from "../../helpers/priceAndCurrencyHelper";
 import Attribute from "../Attribute/Attribute";
+import "./ProductCard.scss"
+import OutsideClickChecker from './../OutsideClickChecker/OutsideClickChecker';
 
 class ProductCard extends Component {
   constructor(props) {
@@ -33,6 +35,7 @@ class ProductCard extends Component {
       ...this.props.product,
       attributes: this.state.selectedAttributes
     });
+    this.toggleSelectingMode()
   };
 
   render() {
@@ -59,7 +62,7 @@ class ProductCard extends Component {
             <button
               className="cart-btn"
               onClick={(e) => {
-                e.preventDefault()
+                e.preventDefault();
                 e.stopPropagation();
                 this.toggleSelectingMode();
               }}
@@ -74,17 +77,22 @@ class ProductCard extends Component {
           </div>
         </Link>
         {this.state.selectingMode && (
-          <div className="attributes-selector">
-            {attributes.map((attr) => (
-              <Attribute
-                addToSelectedAttributes={this.addToSelectedAttributes}
-                attribute={attr}
-                editable={true}
-              />
-            ))}
-            <button onClick={this.handleAddClick} className="confirm-btn">
-              Confirm
-            </button>
+          <div className="attributes-selector__wrapper">
+            <OutsideClickChecker close={this.toggleSelectingMode}>
+              <div className="attributes-content">
+                <div className="title">Please Select Params</div>
+                {attributes.map((attr) => (
+                  <Attribute
+                    addToSelectedAttributes={this.addToSelectedAttributes}
+                    attribute={attr}
+                    editable={true}
+                  />
+                ))}
+                <button onClick={this.handleAddClick} className="confirm-btn">
+                  Confirm
+                </button>
+              </div>
+            </OutsideClickChecker>
           </div>
         )}
       </>

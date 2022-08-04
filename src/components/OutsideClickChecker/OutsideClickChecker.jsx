@@ -17,8 +17,12 @@ export default class OutsideClickChecker extends Component {
   }
 
   handleClickOutside(event) {
-    if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
-        this.props.close()
+    if (
+      this.wrapperRef &&
+      !this.wrapperRef.current.contains(event.target) &&
+      !event.target.parentElement.classList.contains(this.props.itemToAvoid)
+    ) {
+      this.props.close();
     }
   }
 
@@ -26,4 +30,3 @@ export default class OutsideClickChecker extends Component {
     return <div ref={this.wrapperRef}>{this.props.children}</div>;
   }
 }
-

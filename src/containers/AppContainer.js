@@ -6,7 +6,7 @@ import { getAllCategories } from '../features/categories/categoriesSlice';
 import { restoreCart } from '../features/cart/cartSlice';
 
 const mapStateToProps = state => ({
-    isContentLoaded: !!(state.currencies && state.categories.categories)
+    isContentLoaded: !!(state.currencies.currencies && state.categories.categories)
 })
 
 const mapDispatchToProps = dispatch => ({
