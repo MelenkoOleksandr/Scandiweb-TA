@@ -1,15 +1,14 @@
-@use "../../styles/fonts.scss";
-@use "../../styles/colors.scss";
+@use "../../styles/general.scss";
 
 .minicart-bg {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 5;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    background: rgb(57 55 72 / 22%);
+    width: general.$fullWidth;
+    height: general.$fullHeight;
+    min-height: general.$fullHeight;
+    background: general.$miniCartBg;
 }
 
 ::-webkit-scrollbar {
@@ -24,15 +23,15 @@
     box-sizing: border-box;
     width: 350px;
     padding: 32px 16px;
-    background: white;
+    background: general.$white;
 
     .minicart-title {
         margin-bottom: 15px;
-        font-weight: fonts.$regular;
-        font-size: fonts.$font16;
+        font-weight: general.$regular;
+        font-size: general.$font16;
 
         .bold {
-            font-weight: fonts.$bold;
+            font-weight: general.$bold;
         }
     }
 
@@ -46,45 +45,43 @@
 
     .cart-item {
         display: flex;
-        flex-direction: row;
         align-items: center;
         box-sizing: border-box;
         height: 210px;
         margin-top: 40px;
 
         .item-desc {
-            display: flex;
-            flex-direction: column;
+            @include general.flex(flex-start, flex-start, column);
+           
             gap: 10px;
-            align-items: flex-start;
-            justify-content: flex-start;
+           
             width: 160px;
-            height: 100%;
+            height: general.$fullHeight;
             margin-right: 10px;
             padding-bottom: 10px;
 
             .item-brand {
                 margin-top: 0;
-                font-weight: fonts.$regular;
-                font-size: fonts.$font16;
+                font-weight: general.$regular;
+                font-size: general.$font16;
             }
 
             .item-type {
-                font-weight: fonts.$regular;
-                font-size: fonts.$font16;
+                font-weight: general.$regular;
+                font-size: general.$font16;
             }
 
             .item-price {
-                font-weight: fonts.$bold;
-                font-size: fonts.$font16;
+                font-weight: general.$bold;
+                font-size: general.$font16;
             }
 
             .attribute {
 
                 .attribute-title {
                     margin: 0;
-                    font-weight: 400;
-                    font-size: 16px;
+                    font-weight: general.$regular;
+                    font-size: general.$font16;
                 }
 
                 .attribute-list {
@@ -92,19 +89,17 @@
                     margin-bottom: 0;
 
                     .attribute-list__item {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        @include general.flex();
                         width: 24px;
                         height: 24px;
                         margin-right: 10px;
-                        font-size: 14px;
-                        border: 1px solid black;
-                        transition: 0.3s ease-in-out;
+                        font-size: general.$font14;
+                        border: 1px solid general.$black;
+                        transition: general.$defaultTransition;
 
                         &.selected {
-                            color: white;
-                            background-color: black;
+                            color: general.$white;
+                            background-color: general.$black;
                         }
 
                         &:hover {
@@ -120,7 +115,7 @@
                             border: none;
 
                             &.selected {
-                                box-shadow: 0 0 0 1px white, 0 0 0 3px green;
+                                box-shadow: general.$selectedColorAttributeMinicart;
                             }
                         }
                     }
@@ -131,38 +126,33 @@
         .item-actions {
             display: flex;
             width: 24px;
-            height: 100%;
+            height: general.$fullHeight;
 
             .item-amount {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-between;
+                @include general.flex(center, space-between, column);
                 margin-right: 10px;
 
                 .amount-btn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    @include general.flex();
                     width: 24px;
                     height: 24px;
                     background-color: transparent;
-                    border: 1px solid black;
+                    border: 1px solid general.$black;
                 }
 
                 .amount {
-                    font-weight: fonts.$medium;
-                    font-size: fonts.$font16;
+                    font-weight: general.$medium;
+                    font-size: general.$font16;
                 }
             }
 
             .item-image {
                 position: relative;
-                height: 100%;
+                height: general.$fullHeight;
 
                 .image {
                     width: 120px;
-                    height: 100%;
+                    height: general.$fullHeight;
                 }
             }
 
@@ -173,13 +163,11 @@
                 display: flex;
 
                 .changer-btn {
-                    display: flex;
-                    align-items: stretch;
-                    justify-content: center;
+                    @include general.flex(stretch, center);
                     width: 24px;
                     height: 24px;
-                    color: white;
-                    background: rgb(0 0 0 / 73%);
+                    color: general.$white;
+                    background: #000000ba;
                 }
 
                 .prev-img {
@@ -190,43 +178,35 @@
     }
 
     .total {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
+        @include general.flex(center, space-between);
+        width: general.$fullWidth;
         margin: 30px 0;
-        font-weight: fonts.$bold;
-        font-size: fonts.$font16;
+        font-weight: general.$bold;
+        font-size: general.$font16;
     }
 
     .minicart-btns {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
+         @include general.flex(center, space-between);
+        width: general.$fullWidth;
 
         .bag-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include general.flex();
             box-sizing: border-box;
             margin-right: 15px;
             padding: 15px 30px;
-            font-weight: fonts.$bold;
-            font-size: fonts.$font14;
-            border: 1px solid black;
+            font-weight: general.$bold;
+            font-size: general.$font14;
+            border: 1px solid general.$black;
         }
 
         .checkout-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include general.flex();
             box-sizing: border-box;
             padding: 15px 30px;
-            color: white;
-            font-weight: fonts.$bold;
-            font-size: fonts.$font14;
-            background-color: #5ece7b;
+            color: general.$white;
+            font-weight: general.$bold;
+            font-size: general.$font14;
+            background-color: general.$green;
             border: none;
         }
     }

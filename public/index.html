@@ -25,8 +25,107 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      
+      @keyframes ring {
+        0% {
+          box-shadow: 1px 5px 2px #e65c00;
+          transform: rotate(0deg);
+        }
+
+        50% {
+          box-shadow: 1px 5px 2px #18b201;
+          transform: rotate(180deg);
+        }
+
+        100% {
+          box-shadow: 1px 5px 2px #0456c8;
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes text-disappear {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.2;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+      
+      .spinner .ring::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 5px rgb(255 255 255 / 50%);
+        content: "";
+      }
+      
+    </style>
+    <script>
+      window.addEventListener("load", () => {
+        console.log("remove");
+        document.body.removeChild(document.getElementById("bundleSpinner"));
+      });
+    </script>
   </head>
   <body>
+    <div id="bundleSpinner" className="spinner-wrapper">
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          z-index: 9;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+          width: 100%;
+          min-height: 100vh;
+          text-align: center;
+          background-color: #ffffff;
+        "
+        className="spinner"
+      >
+        <div
+          className="ring"
+          style="
+            position: absolute;
+            z-index: 10;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            animation: ring 2s linear infinite;
+          "
+        ></div>
+        <span
+          style="
+            color: #737373;
+            font-size: 24px;
+            font-family:Arial, Helvetica, sans-serif;
+            line-height: 200px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: text-disappear 2s linear infinite;
+          "
+          >loading...</span
+        >
+      </div>
+    </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

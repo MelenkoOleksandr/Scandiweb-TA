@@ -3,5 +3,11 @@ $black: #000000;
 $white: #ffffff;
 $lightGray: #eeeeee;
 
+$cartItemBorderColor: #e5e5e5;
+
+$miniCartBg: #39374838;
 $headerBg: $white;
+
 $currencyShadow: drop-shadow(0 5px 35px #a8acb030);
+$selectedColorAttribute: 0 0 0 2px white, 0 0 0 4px green;
+$selectedColorAttributeMinicart: 0 0 0 1px white, 0 0 0 3px green;

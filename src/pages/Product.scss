@@ -1,9 +1,9 @@
+@use  "../styles/general.scss";
+
 .product {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include general.flex(center, space-between);
     box-sizing: border-box;
-    width: 100%;
+    width: general.$fullWidth;
     height: 700px;
     margin-top: 80px;
     padding: 0 100px;
@@ -20,7 +20,7 @@
             width: 20%;
 
             .secondary-image {
-                width: 100%;
+               width: general.$fullWidth;
             }
         }
 
@@ -35,56 +35,48 @@
         flex: 1;
         flex-direction: column;
         align-items: flex-start;
-        height: 100%;
+        height: general.$fullHeight;
 
         .brand {
             margin-bottom: 15px;
-            font-weight: bold;
-            font-size: 30px;
+            font-weight: general.$bold;
+            font-size: general.$font30;
         }
 
         .name {
             margin-bottom: 40px;
-            font-size: 30px;
+            font-size:  general.$font30;
         }
-
-
 
         .price {
             margin-top: 40px;
 
             .price-title {
                 margin-bottom: 10px;
-                font-weight: bold;
-                font-size: 18px;
+                font-weight: general.$bold;
+                font-size: general.$font18;
             }
 
             .price-amount {
                 margin-bottom: 10px;
-                font-weight: bold;
-                font-size: 24px;
+                font-weight: general.$bold;
+                font-size: general.$font24;
             }
         }
 
         .btn-add {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include general.flex();
             box-sizing: border-box;
-            width: 100%;
+            width: general.$fullWidth;
             max-width: 300px;
             margin-top: 20px;
             margin-bottom: 40px;
             padding: 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
+            color: general.$white;
+            font-weight: general.$bold;
+            font-size: general.$font16;
             text-transform: uppercase;
-            background-color: #5ece7b;
-        }
-
-        .description {
-            font-family: Roboto;
+            background-color: general.$green;
         }
     }
 }

@@ -1,28 +1,28 @@
+@use "../../styles/general.scss";
+
 .attributes-selector__wrapper {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 100vh;
+    @include general.flex();
+    width: general.$fullWidth;
+    min-height: general.$absoluteHeight100;
     background-color: rgba($color: #000000, $alpha: 50%);
 
     .attributes-content {
 
         .title {
             margin-bottom: 30px;
-            font-weight: bold;
-            font-size: 24px;
+            font-weight: general.$bold;
+            font-size: general.$font24;
         }
 
         box-sizing: border-box;
         width: 350px;
         min-height: 200px;
         padding: 30px;
-        background-color: white;
+        background-color: general.$white;
         border-radius: 15px;
 
         .confirm-btn {
@@ -30,10 +30,10 @@
             width: 100px;
             margin-top: 20px;
             padding: 15px 20px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            background-color: green;
+            color:  general.$white;
+            font-weight: general.$bold;
+            font-size: general.$font16;
+            background-color: general.$green;
             border: none;
         }
     }

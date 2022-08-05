@@ -5,6 +5,7 @@ import { getPriceStrByCurrency } from "../../helpers/priceAndCurrencyHelper";
 import AttributeSelector from "./AttributeSelector/AttributeSelector";
 
 import "./ProductCard.scss";
+
 class ProductCard extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,11 @@ class ProductCard extends Component {
   }
 
   toggleSelectingMode = () => {
+      if (!this.state.selectingMode) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "visible";
+      }
     this.setState({ selectingMode: !this.state.selectingMode });
   };
 

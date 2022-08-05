@@ -1,26 +1,25 @@
+@use "../../../styles/general.scss";
+
 .cart-btn {
-  position: relative;
-  display: flex;
-  align-items: center;
-  .cart-btn_icon {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .cart-badge {
-      position: absolute;
-      top: -12px;
-      right: -12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 21px;
-      height: 21px;
-      color: white;
-      font-weight: bold;
-      font-size: 14px;
-      background-color: black;
-      border-radius: 50%;
+    @include general.flex();
+
+    .cart-btn_icon {
+        position: relative;
+        @include general.flex();
+
+        .cart-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            @include general.flex();
+            width: 21px;
+            height: 21px;
+            color: general.$white;
+            font-weight: general.$bold;
+            font-size: general.$font14;
+            background-color: general.$black;
+            border-radius: general.$borderRound;
+        }
     }
-  }
 }

@@ -1,5 +1,4 @@
-@use "../styles/colors.scss";
-@use "../styles/fonts.scss";
+@use "../styles/general.scss";
 
 .cart {
     padding: 80px 100px;
@@ -15,17 +14,14 @@
     }
 
     .cart-item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+        @include general.flex(center, space-between);
         box-sizing: border-box;
         height: 500px;
         padding: 24px 0;
-        border-top: 1px solid #e5e5e5;
+        border-top: 1px solid general.$cartItemBorderColor;
 
         &:last-child {
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid general.$cartItemBorderColor;
         }
 
         .item-desc {
@@ -35,20 +31,20 @@
 
             .item-brand {
                 margin-bottom: 20px;
-                font-weight: fonts.$bold;
-                font-size: fonts.$font30;
+                font-weight: general.$bold;
+                font-size: general.$font30;
             }
 
             .item-type {
                 margin-bottom: 20px;
-                font-weight: fonts.$regular;
-                font-size: fonts.$font30;
+                font-weight: general.$regular;
+                font-size: general.$font30;
             }
 
             .item-price {
                 margin-bottom: 20px;
-                font-weight: fonts.$bold;
-                font-size: fonts.$font24;
+                font-weight: general.$bold;
+                font-size: general.$font24;
             }
 
             .item-sizes {
@@ -56,8 +52,8 @@
 
                 .sizes-title {
                     margin-bottom: 5px;
-                    font-weight: fonts.$bold;
-                    font-size: fonts.$font18;
+                    font-weight: general.$bold;
+                    font-size: general.$font18;
                 }
 
                 .sizes {
@@ -65,20 +61,18 @@
                     padding-left: 0;
 
                     .size {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                       @include general.flex();
                         box-sizing: border-box;
                         min-width: 65px;
                         margin-right: 10px;
                         padding: 15px 20px;
-                        font-size: fonts.$font16;
+                        font-size: general.$font16;
                         list-style: none;
-                        border: 1px solid black;
+                        border: 1px solid general.$black;
 
                         &.selected {
-                            color: white;
-                            background-color: black;
+                            color: general.$white;
+                            background-color: general.$black;
                         }
                     }
                 }
@@ -88,8 +82,8 @@
 
                 .colors-title {
                     margin-bottom: 5px;
-                    font-weight: fonts.$bold;
-                    font-size: fonts.$font18;
+                    font-weight: general.$bold;
+                    font-size: general.$font18;
                 }
 
                 .colors {
@@ -103,7 +97,7 @@
                         list-style: none;
 
                         &.selected {
-                            box-shadow: 0 0 0 1px white, 0 0 0 2px colors.$green;
+                            box-shadow: 0 0 0 1px general.$white, 0 0 0 2px general.$green;
                         }
                     }
                 }
@@ -112,37 +106,32 @@
 
         .item-actions {
             display: flex;
-            height: 100%;
+            height: general.$fullHeight;
 
             .item-amount {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-between;
+                @include general.flex(center, space-between, column);
                 margin-right: 25px;
 
                 .amount-btn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                   @include general.flex();
                     width: 45px;
                     height: 45px;
                     background-color: transparent;
-                    border: 1px solid black;
+                    border: 1px solid general.$black;
                 }
 
                 .amount {
-                    font-weight: fonts.$medium;
-                    font-size: fonts.$font24;
+                    font-weight: general.$medium;
+                    font-size: general.$font24;
                 }
             }
 
             .item-image {
                 position: relative;
-                height: 100%;
+                height: general.$fullHeight;
 
                 .image {
-                    height: 100%;
+                    height: general.$fullHeight;
                 }
             }
 
@@ -153,13 +142,11 @@
                 display: flex;
 
                 .changer-btn {
-                    display: flex;
-                    align-items: stretch;
-                    justify-content: center;
+                    @include general.flex(stretch, center);
                     width: 24px;
                     height: 24px;
-                    color: white;
-                    background: rgb(0 0 0 / 73%);
+                    color: general.$white;
+                    background: #000000ba;
                 }
 
                 .prev-img {
@@ -176,7 +163,7 @@
     align-items: flex-start;
     max-width: 300px;
     margin-top: 30px;
-    font-size: fonts.$font24;
+    font-size: general.$font24;
 
     .tax,
     .quantity,
@@ -187,17 +174,17 @@
 
     .total-text {
         width: 90px;
-        font-weight: fonts.$regular;
-        font-size: fonts.$font24;
+        font-weight: general.$regular;
+        font-size: general.$font24;
 
         &.result {
-            font-weight: fonts.$medium;
+            font-weight: general.$medium;
         }
     }
 
     .total-amount {
         margin-left: 15px;
-        font-weight: fonts.$bold;
+        font-weight: general.$bold;
     }
 
     .order-btn {
