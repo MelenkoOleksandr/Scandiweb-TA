@@ -7,13 +7,13 @@ const getAllCategories = createAsyncThunk('categories/getAllCategories', async (
     const response = await client.query({ query: GET_ALL_CATEGORIES })
     const currentCategory = response.data.categories[0].name
     thunkAPI.dispatch(getAllProductsInCategory(currentCategory))
-    return response.data
+    return response.data.categories
 })
 
 export const categoriesSlice = createSlice({
     name: 'categories',
     initialState: {
-        categories: null,
+        categories: [],
     },
     extraReducers: builder => {
         builder.addCase(getAllCategories.fulfilled, (state, action) => {

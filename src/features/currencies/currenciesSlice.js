@@ -11,7 +11,7 @@ export const getAllCurrencies = createAsyncThunk('currencies/getAllCurrrencies',
 export const currenciesSlice = createSlice({
     name: 'currencies',
     initialState: {
-        currencies: null,
+        currencies: [],
         currentCurrency: null,
     },
     reducers: {

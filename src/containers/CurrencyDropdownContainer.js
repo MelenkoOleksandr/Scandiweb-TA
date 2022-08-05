@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import CurrencyDropdown from '../components/CurrencyDropdown/CurrencyDropdown';
+import CurrencyDropdown from '../components/Header/Currency/CurrencyDropdown/CurrencyDropdown';
 import { setCurrency } from '../features/currencies/currenciesSlice';
 
 const mapStateToProps = state => ({

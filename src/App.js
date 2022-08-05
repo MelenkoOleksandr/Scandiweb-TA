@@ -6,10 +6,10 @@ import {
   Switch
 } from 'react-router-dom'
 import CategoryContainer from "./containers/CategoryContainer";
-import HeaderContainer from "./containers/HeaderContainer";
 import Spinner from "./components/Spinner/Spinner";
 import ProductContainer from "./containers/ProductContainer";
-import CartContainer from "./containers/CartContainer";
+import Header from "./components/Header/Header";
+import Cart from "./pages/Cart";
 
 class App extends Component {
   componentDidMount() {
@@ -19,28 +19,28 @@ class App extends Component {
   }
 
   render() {
+    if (!this.props.isContentLoaded) {
+      return <Spinner />
+    }
+    const baseCategory = this.props.categories[0].name
     return (
       <BrowserRouter>
-        {this.props.isContentLoaded ? (<>
-          <HeaderContainer />
+        <>
+          <Header />
           <div className="content">
             <Switch>
-              
               <Route exact path={'/'}>
-                <Redirect to={'/all'}/>
+                <Redirect to={`/${baseCategory}`} />
               </Route>
-              <Route exact path="/cart" ><CartContainer /></Route>
+              <Route exact path="/cart" ><Cart /></Route>
               <Route path="/:category/:productId" ><ProductContainer /></Route>
               <Route path="/:category" >
                 <CategoryContainer />
               </Route>
-             
+
             </Switch>
           </div>
-        </> ) : <Spinner />}
-      
-       
-
+        </>
       </BrowserRouter>
     )
   }

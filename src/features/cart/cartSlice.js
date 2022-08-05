@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { findSameProductInCartIndex } from "../../helpers/cartHelper";
 
 export const cartSlice = createSlice({
     name: "cart",
@@ -9,31 +10,15 @@ export const cartSlice = createSlice({
         restoreCart: (state) => {
             const savedCart = JSON.parse(localStorage.getItem('cart'))
             if (savedCart) state.cart = savedCart
+            localStorage.setItem('cart', JSON.stringify(state.cart))
         },
         addProduct: (state, action) => {
-            const sameItemIndex = state.cart.findIndex(cartItem => {
-                
-                if (cartItem.id === action.payload.id) {
-                    
-                    for (let attributeIndex = 0; attributeIndex <= cartItem.attributes.length - 1; attributeIndex++) {
-                        if (action.payload.attributes[attributeIndex].selected.value !== cartItem.attributes[attributeIndex].selected.value ) {
-                            return false
-                        }
-                        
-                    }    
-
-                    return true
-                }
-
-                return false
-            }) 
-
+            const sameItemIndex = findSameProductInCartIndex(state.cart, action.payload.id, action.payload.attributes)
             if (sameItemIndex === -1) {
-                state.cart.push({...action.payload, amount: 1})
+                state.cart.push({ ...action.payload, amount: 1 })
             } else {
                 state.cart[sameItemIndex].amount++
             }
-            
             localStorage.setItem('cart', JSON.stringify(state.cart))
         },
         increaseProductAmount: (state, action) => {
@@ -50,9 +35,10 @@ export const cartSlice = createSlice({
         },
         checkout: (state) => {
             state.cart = []
-            localStorage.setItem('cart', JSON.stringify(state.cart))
         }
     }
+
+
 })
 
 export const { restoreCart, addProduct, increaseProductAmount, decreaseProductAmount, checkout } = cartSlice.actions

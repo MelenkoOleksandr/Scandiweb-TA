@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import cartWhite from "../../assets/cartWhite.png";
 import { getPriceStrByCurrency } from "../../helpers/priceAndCurrencyHelper";
-import Attribute from "../Attribute/Attribute";
-import "./ProductCard.scss"
-import OutsideClickChecker from './../OutsideClickChecker/OutsideClickChecker';
+import AttributeSelector from "./AttributeSelector/AttributeSelector";
 
+import "./ProductCard.scss";
 class ProductCard extends Component {
   constructor(props) {
     super(props);
@@ -19,29 +18,40 @@ class ProductCard extends Component {
     this.setState({ selectingMode: !this.state.selectingMode });
   };
 
+  fillSelectedAttributes = attributes => {
+    const attributesWithBaseParams = attributes.map(attribute => ({...attribute, selected: attribute.items[0]}))
+    console.log(attributesWithBaseParams);
+    this.setState({ selectedAttributes: attributesWithBaseParams }, () => console.log(this.state));
+  }
+
   addToSelectedAttributes = (attr, value) => {
-    this.setState({
-      selectedAttributes: [
-        ...this.state.selectedAttributes.filter(
-          (attribute) => attribute.name !== attr.name
-        ),
-        { ...attr, selected: value },
-      ],
-    });
+    const resultOfAdding = [
+      ...this.state.selectedAttributes.filter(
+        (attribute) => attribute.name !== attr.name
+      ),
+      { ...attr, selected: value },
+    ];
+    this.setState(
+      {
+        selectedAttributes: resultOfAdding,
+      },
+      () => console.log("Attributes", this.state.selectedAttributes)
+    );
   };
 
   handleAddClick = () => {
     this.props.addProductToCart({
       ...this.props.product,
-      attributes: this.state.selectedAttributes
+      attributes: this.state.selectedAttributes,
     });
-    this.toggleSelectingMode()
+    this.toggleSelectingMode();
   };
 
   render() {
     if (!this.props.product) {
       return null;
     }
+
     const { id, name, gallery, prices, attributes, inStock, category, brand } =
       this.props.product;
 
@@ -76,24 +86,15 @@ class ProductCard extends Component {
             <div className="product-price">{price}</div>
           </div>
         </Link>
+
         {this.state.selectingMode && (
-          <div className="attributes-selector__wrapper">
-            <OutsideClickChecker close={this.toggleSelectingMode}>
-              <div className="attributes-content">
-                <div className="title">Please Select Params</div>
-                {attributes.map((attr) => (
-                  <Attribute
-                    addToSelectedAttributes={this.addToSelectedAttributes}
-                    attribute={attr}
-                    editable={true}
-                  />
-                ))}
-                <button onClick={this.handleAddClick} className="confirm-btn">
-                  Confirm
-                </button>
-              </div>
-            </OutsideClickChecker>
-          </div>
+          <AttributeSelector
+            attributes={attributes}
+            toggleSelectingMode={this.toggleSelectingMode}
+            addToSelectedAttributes={this.addToSelectedAttributes}
+            handleAddClick={this.handleAddClick}
+            fillSelectedAttributes={this.fillSelectedAttributes}
+          />
         )}
       </>
     );

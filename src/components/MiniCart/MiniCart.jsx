@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import addItem from "../../assets/addItem.png";
-import removeItem from "../../assets/removeItem.png";
-import "./MiniCart.scss";
 import { getPriceStrByCurrency } from "./../../helpers/priceAndCurrencyHelper";
-import Attribute from "../Attribute/Attribute";
+import ItemAmountController from './../ItemAmountController/ItemAmountController';
+import Attributes from "../Attributes/Attributes";
 
+import "./MiniCart.scss";
 class MiniCart extends Component {
   increaseCartAmount = (cartIndex) => {
     this.props.increaseItemInCartAmount(cartIndex);
@@ -24,36 +23,23 @@ class MiniCart extends Component {
         </h2>
         <div className="cart-items">
           {this.props.cart &&
-            this.props.cart.map((item, cartIndex) => {
+            this.props.cart.map((item, cartItemIndex) => {
               const { name, gallery, attributes, prices, brand, amount } = item;
               const price = getPriceStrByCurrency(prices, this.props.currency);
               return (
-                <div className="cart-item">
+                <div className="cart-item" key={cartItemIndex}>
                   <div className="item-desc">
                     {brand && <h4 className="item-brand">{brand}</h4>}
                     {name && <h3 className="item-type">{name}</h3>}
                     <h5 className="item-price">{price}</h5>
-
-                    {attributes.map((attribute) => (
-                      <Attribute editable={false} attribute={attribute} />
-                    ))}
+                    <Attributes attributes={attributes} isEditable={false} />
+                  
                   </div>
                   <div className="item-actions">
-                    <div className="item-amount">
-                      <button
-                        onClick={() => this.increaseCartAmount(cartIndex)}
-                        className="amount-btn"
-                      >
-                        <img src={addItem} alt="add button" />
-                      </button>
-                      <div className="amount">{amount}</div>
-                      <button
-                        onClick={() => this.decreaseCartAmount(cartIndex)}
-                        className="amount-btn"
-                      >
-                        <img src={removeItem} alt="remove button" />
-                      </button>
-                    </div>
+                    <ItemAmountController
+                      cartItemIndex={cartItemIndex}
+                      amount={amount}
+                    />
                     <div className="item-image">
                       <img className="image" src={gallery[0]} alt="coat" />
                     </div>

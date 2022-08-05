@@ -1,6 +1,5 @@
 
 import { connect } from 'react-redux';
-
 import { checkout, decreaseProductAmount, increaseProductAmount } from '../features/cart/cartSlice';
 import { calcAmount, calcTotal } from '../helpers/priceAndCurrencyHelper';
 import MiniCart from './../components/MiniCart/MiniCart';
