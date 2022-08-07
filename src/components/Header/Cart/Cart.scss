@@ -2,17 +2,21 @@
 
 .cart-btn {
     position: relative;
-    @include general.flex();
+
+    @include general.flex;
 
     .cart-btn_icon {
         position: relative;
-        @include general.flex();
+
+        @include general.flex;
 
         .cart-badge {
             position: absolute;
             top: -12px;
             right: -12px;
-            @include general.flex();
+
+            @include general.flex;
+
             width: 21px;
             height: 21px;
             color: general.$white;

@@ -1,42 +1,47 @@
 @use "../../../styles/general.scss";
 
 .currency {
-  position: relative;
-  @include general.flex();
-  margin-right: 20px;
-  font-size: general.$font18;
+    position: relative;
 
-  .currency-caret {
-    @include general.flex();
-    margin-left: 10px;
-    background-color: transparent;
-    border: none;
-  }
+    @include general.flex;
 
-  .currency-list {
-    position: absolute;
-    top: 0;
-    left: -25px;
-    @include general.flex(center, center, column);
-    box-sizing: border-box;
-    padding: 20px 40px 20px 20px;
-    text-align: center;
-    filter: general.$currencyShadow;
+    margin-right: 20px;
+    font-size: general.$font18;
 
-    .currency-item {
-      display: flex;
-      flex-direction: row;
-      box-sizing: border-box;
-      width: 130px;
-      padding: 10px 40px 10px 20px;
-      font-weight: general.$medium;
-      font-size: general.$font18;
-      list-style: none;
-      background-color: general.$white;
+    .currency-caret {
+        @include general.flex;
 
-      &.active {
-        background-color: general.$lightGray;
-      }
+        margin-left: 10px;
+        background-color: transparent;
+        border: none;
     }
-  }
+
+    .currency-list {
+        position: absolute;
+        top: 0;
+        left: -25px;
+
+        @include general.flex(center, center, column);
+
+        box-sizing: border-box;
+        padding: 20px 40px 20px 20px;
+        text-align: center;
+        filter: general.$currencyShadow;
+
+        .currency-item {
+            display: flex;
+            flex-direction: row;
+            box-sizing: border-box;
+            width: 130px;
+            padding: 10px 40px 10px 20px;
+            font-weight: general.$medium;
+            font-size: general.$font18;
+            list-style: none;
+            background-color: general.$white;
+
+            &.active {
+                background-color: general.$lightGray;
+            }
+        }
+    }
 }

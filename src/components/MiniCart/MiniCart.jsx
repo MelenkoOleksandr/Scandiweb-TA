@@ -33,7 +33,6 @@ class MiniCart extends Component {
                     {name && <h3 className="item-type">{name}</h3>}
                     <h5 className="item-price">{price}</h5>
                     <Attributes attributes={attributes} isEditable={false} />
-                  
                   </div>
                   <div className="item-actions">
                     <ItemAmountController
@@ -57,7 +56,11 @@ class MiniCart extends Component {
         </div>
 
         <div className="minicart-btns">
-          <Link to={"/cart"} className="bag-btn">
+          <Link
+            to={"/cart"}
+            onClick={this.props.toggleMiniCart}
+            className="bag-btn"
+          >
             View Bag
           </Link>
           <button onClick={this.props.handleChekout} className="checkout-btn">

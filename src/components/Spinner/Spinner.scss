@@ -37,7 +37,9 @@
     position: absolute;
     top: 0;
     z-index: 9;
-   @include general.flex();
+
+    @include general.flex;
+
     width: general.$fullWidth;
     min-height: general.$absoluteHeight100;
     text-align: center;
@@ -67,10 +69,10 @@
     span {
         color: #737373;
         font-size: general.$font24;
+        font-family: Arial, Helvetica, sans-serif;
         line-height: 200px;
         letter-spacing: 1px;
         text-transform: uppercase;
         animation: text-disappear 2s linear infinite;
-        font-family:Arial, Helvetica, sans-serif;
     }
 }

@@ -38,7 +38,7 @@
     .cart-items {
         display: flex;
         flex-direction: column;
-        max-height: 450px;
+        max-height: 400px;
         overflow-x: hidden;
         overflow-y: scroll;
     }
@@ -47,14 +47,14 @@
         display: flex;
         align-items: center;
         box-sizing: border-box;
-        height: 210px;
+        height: max-content;
         margin-top: 40px;
+        padding-left: 5px;
 
         .item-desc {
             @include general.flex(flex-start, flex-start, column);
-           
+
             gap: 10px;
-           
             width: 160px;
             height: general.$fullHeight;
             margin-right: 10px;
@@ -86,13 +86,16 @@
 
                 .attribute-list {
                     display: flex;
+                    flex-wrap: wrap;
+                    width: 160px;
                     margin-bottom: 0;
 
                     .attribute-list__item {
-                        @include general.flex();
-                        width: 24px;
-                        height: 24px;
+                        @include general.flex;
+
+                        height: 32px;
                         margin-right: 10px;
+                        margin-bottom: 10px;
                         font-size: general.$font14;
                         border: 1px solid general.$black;
                         transition: general.$defaultTransition;
@@ -103,7 +106,7 @@
                         }
 
                         &:hover {
-                            cursor: pointer;
+                            cursor: default;
                         }
                     }
 
@@ -130,10 +133,12 @@
 
             .item-amount {
                 @include general.flex(center, space-between, column);
+
                 margin-right: 10px;
 
                 .amount-btn {
-                    @include general.flex();
+                    @include general.flex;
+
                     width: 24px;
                     height: 24px;
                     background-color: transparent;
@@ -164,6 +169,7 @@
 
                 .changer-btn {
                     @include general.flex(stretch, center);
+
                     width: 24px;
                     height: 24px;
                     color: general.$white;
@@ -179,6 +185,7 @@
 
     .total {
         @include general.flex(center, space-between);
+
         width: general.$fullWidth;
         margin: 30px 0;
         font-weight: general.$bold;
@@ -186,11 +193,13 @@
     }
 
     .minicart-btns {
-         @include general.flex(center, space-between);
+        @include general.flex(center, space-between);
+
         width: general.$fullWidth;
 
         .bag-btn {
-            @include general.flex();
+            @include general.flex;
+
             box-sizing: border-box;
             margin-right: 15px;
             padding: 15px 30px;
@@ -200,7 +209,8 @@
         }
 
         .checkout-btn {
-            @include general.flex();
+            @include general.flex;
+
             box-sizing: border-box;
             padding: 15px 30px;
             color: general.$white;

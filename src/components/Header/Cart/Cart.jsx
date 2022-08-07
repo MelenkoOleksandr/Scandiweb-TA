@@ -21,7 +21,7 @@ class Cart extends Component {
                 itemToAvoid={"cart-btn_icon"}
                 close={toggleMiniCart}
               >
-                <MiniCartContainer />
+                <MiniCartContainer toggleMiniCart={this.props.toggleMiniCart} />
               </OutsideClickChecker>
             )}
           </div>
