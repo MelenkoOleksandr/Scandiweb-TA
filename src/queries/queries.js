@@ -27,6 +27,7 @@ export const GET_PRODUCT_BY_Id = gql`
     description
     category
     inStock
+    brand
     prices {
       currency {
         label

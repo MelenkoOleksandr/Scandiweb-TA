@@ -21,7 +21,7 @@ class Attribute extends Component {
   render() {
     const { name, items, type } = this.props.attribute;
 
-
+    let isSize = name === "Size"
     return (
       <div className="attribute">
         <h4 className="attribute-title">{name}:</h4>
@@ -35,11 +35,19 @@ class Attribute extends Component {
             return (
               <li
                 key={item.displayValue}
-                onClick={this.props.isEditable ? () => this.changeSelected(this.props.attribute, item) : () => {}}
+                onClick={
+                  this.props.isEditable
+                    ? () => this.changeSelected(this.props.attribute, item)
+                    : () => {}
+                }
                 className={`attribute-list__item ${selectedClass}`}
-                style={{backgroundColor: item.value}}
+                style={{ backgroundColor: item.value }}
               >
-                {type !== 'swatch' ? item.displayValue : ''}
+                {type !== "swatch"
+                  ? (isSize
+                    ? item.value
+                    : item.displayValue)
+                  : ""}
               </li>
             );
           })}

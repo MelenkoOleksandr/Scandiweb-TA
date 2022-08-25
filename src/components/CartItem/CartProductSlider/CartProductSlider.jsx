@@ -29,10 +29,22 @@ class CartProductSlider extends Component {
               src={this.props.gallery[this.state.currentImageIndex]}
               alt="coat"
             />
-            <div className="changer">
-              <button onClick={this.handlePrevImage} className="changer-btn prev-img">{"<"}</button>
-              <button onClick={this.handleNextImage} className="changer-btn next-img">{">"}</button>
-            </div>
+            {this.props.gallery.length > 1 && (
+              <div className="changer">
+                <button
+                  onClick={this.handlePrevImage}
+                  className="changer-btn prev-img"
+                >
+                  {"<"}
+                </button>
+                <button
+                  onClick={this.handleNextImage}
+                  className="changer-btn next-img"
+                >
+                  {">"}
+                </button>
+              </div>
+            )}
           </div>
         );
     }

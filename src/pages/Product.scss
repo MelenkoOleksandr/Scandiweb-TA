@@ -1,146 +1,154 @@
 @use "../styles/general.scss";
 
 .product {
+  display: flex;
+  box-sizing: border-box;
+  width: general.$fullWidth;
+  margin-top: 80px;
+  padding: 0 100px;
+  overflow: hidden;
+
+  .product-images {
     display: flex;
-    box-sizing: border-box;
-    width: general.$fullWidth;
-    margin-top: 80px;
-    padding: 0 100px;
-    overflow: hidden;
+    flex: 2;
+    height: 100%;
+    height: 700px;
+    margin-right: 100px;
 
-    .product-images {
+    .secondary-images__wrapper {
+      .secondary-images {
         display: flex;
-        flex: 2;
-        height: 100%;
-        height: 700px;
-        margin-right: 100px;
-
-        .secondary-images__wrapper {
-
-            .secondary-images {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                height: 75%;
-
-                .secondary-image {
-                    width: general.$fullWidth;
-                    height: calc(100% / 3 - 10px);
-                    margin-bottom: 10px;
-                }
-            }
-
-            .next-image {
-                box-sizing: border-box;
-                width: 100%;
-                padding: 10px 15px;
-                color: white;
-                font-size: 16px;
-                background-color: rgba($color: #000000, $alpha: 60%);
-                border: none;
-            }
-        }
-
-        .main-image {
-            width: 70%;
-            margin-left: 40px;
-        }
-    }
-
-    .product-description {
-        display: flex;
-        flex: 1;
         flex-direction: column;
         align-items: flex-start;
-        height: general.$fullHeight;
+        height: 75%;
 
-        .brand {
-            margin-bottom: 15px;
-            font-weight: general.$bold;
-            font-size: general.$font30;
+        .secondary-image {
+          width: general.$fullWidth;
+          height: calc(100% / 3 - 10px);
+          margin-bottom: 10px;
+          object-fit: contain;
         }
+      }
 
-        .name {
-            margin-bottom: 40px;
-            font-size: general.$font30;
-        }
-
-        .price {
-            margin-top: 40px;
-
-            .price-title {
-                margin-bottom: 10px;
-                font-weight: general.$bold;
-                font-size: general.$font18;
-            }
-
-            .price-amount {
-                margin-bottom: 10px;
-                font-weight: general.$bold;
-                font-size: general.$font24;
-            }
-        }
-
-        .btn-add {
-            @include general.flex;
-
-            box-sizing: border-box;
-            width: general.$fullWidth;
-            max-width: 300px;
-            margin-top: 20px;
-            margin-bottom: 40px;
-            padding: 16px;
-            color: general.$white;
-            font-weight: general.$bold;
-            font-size: general.$font16;
-            text-transform: uppercase;
-            background-color: general.$green;
-
-            &:disabled {
-                color: lightgray;
-                background-color: grey;
-                cursor: default;
-            }
-        }
+      .next-image {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px 15px;
+        color: white;
+        font-size: 16px;
+        background-color: rgba($color: #000000, $alpha: 60%);
+        border: none;
+      }
     }
+
+    .main-image {
+      width: 70%;
+      margin-left: 40px;
+      object-fit: contain;
+    }
+  }
+
+  .product-description {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    height: general.$fullHeight;
+
+    .naming {
+        margin-bottom: 40px;
+      .brand {
+        margin-bottom: 15px;
+        font-weight: general.$bold;
+        font-size: general.$font30;
+      }
+      .name {
+        font-weight: general.$regular;
+        font-size: general.$font30;
+      }
+      .out-of-stock {
+        margin-top: 10px;
+        font-size: general.$font24;
+        color: general.$outOfStockColor;
+      }
+    }
+
+    .price {
+      margin-top: 40px;
+
+      .price-title {
+        margin-bottom: 10px;
+        font-weight: general.$bold;
+        font-size: general.$font18;
+      }
+
+      .price-amount {
+        margin-bottom: 10px;
+        font-weight: general.$bold;
+        font-size: general.$font24;
+      }
+    }
+
+    .btn-add {
+      @include general.flex;
+
+      box-sizing: border-box;
+      width: general.$fullWidth;
+      max-width: 300px;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      padding: 16px;
+      color: general.$white;
+      font-weight: general.$bold;
+      font-size: general.$font16;
+      text-transform: uppercase;
+      background-color: general.$green;
+      border: none;
+
+      &:disabled {
+        color: lightgray;
+        background-color: grey;
+        cursor: default;
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {
+  .product {
+    flex-direction: column;
+    padding: 0 50px;
 
-    .product {
+    .product-images {
+      flex-direction: column;
+      margin-right: 0;
+
+      .secondary-images__wrapper {
+        display: flex;
         flex-direction: column;
-        padding: 0 50px;
+        align-items: center;
+        order: 2;
+        width: 100%;
 
-        .product-images {
-            flex-direction: column;
-            margin-right: 0;
+        .secondary-images {
+          flex-direction: row;
+          width: 100%;
 
-            .secondary-images__wrapper {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                order: 2;
-                width: 100%;
-
-                .secondary-images {
-                    flex-direction: row;
-                    width: 100%;
-
-                    .secondary-image {
-                        width: calc(100% / 3);
-                    }
-                }
-
-                .next-image {
-                    max-width: 60%;
-                    margin: 20px 0;
-                }
-            }
-
-            .main-image {
-                width: 100%;
-                margin-left: 0;
-            }
+          .secondary-image {
+            width: calc(100% / 3);
+          }
         }
+
+        .next-image {
+          max-width: 60%;
+          margin: 20px 0;
+        }
+      }
+
+      .main-image {
+        width: 100%;
+        margin-left: 0;
+      }
     }
+  }
 }

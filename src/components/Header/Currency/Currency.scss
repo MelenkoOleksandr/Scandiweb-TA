@@ -38,7 +38,11 @@
             font-size: general.$font18;
             list-style: none;
             background-color: general.$white;
-
+            transition: general.$defaultTransition;
+            &:hover {
+                cursor: pointer;
+                background-color: general.$currencyHover;
+            }
             &.active {
                 background-color: general.$lightGray;
             }

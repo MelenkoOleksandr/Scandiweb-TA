@@ -4,6 +4,7 @@ import Attributes from "../components/Attributes/Attributes";
 import ProductImages from "../components/ProductImages/ProductImages";
 import Spinner from "../components/Spinner/Spinner";
 import { getPriceStrByCurrency } from "../helpers/priceAndCurrencyHelper";
+import DOMPurify from 'dompurify'
 import "./Product.scss";
 
 class Product extends Component {
@@ -51,13 +52,18 @@ class Product extends Component {
     const { name, gallery, inStock, description, attributes, prices, brand } =
       this.props.product;
 
+
     const price = getPriceStrByCurrency(prices, this.props.currency);
     return (
       <section className="product">
         <ProductImages gallery={gallery} />
         <div className="product-description">
-          <h3 className="brand">{brand}</h3>
-          <h4 className="name">{name}</h4>
+          <div className="naming">
+            <h3 className="brand">{brand}</h3>
+            <h4 className="name">{name}</h4>
+            {!inStock && <h5 className="out-of-stock">Out of stock</h5>}
+          </div>
+
           <Attributes
             fillSelectedAttributes={this.fillSelectedAttributes}
             addToSelectedAttributes={this.addToSelectedAttributes}
@@ -78,7 +84,9 @@ class Product extends Component {
           </button>
           <div
             className="description"
-            dangerouslySetInnerHTML={{ __html: description }}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(description),
+            }}
           ></div>
         </div>
       </section>

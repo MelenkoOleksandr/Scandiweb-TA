@@ -52,6 +52,7 @@
         .item-actions {
             display: flex;
             height: general.$fullHeight;
+            max-width: 370px;
 
             .item-amount {
                 @include general.flex(center, space-between, column);
@@ -79,6 +80,8 @@
 
                 .image {
                     height: general.$fullHeight;
+                    width: general.$fullWidth;
+                    object-fit: contain;
                 }
             }
 

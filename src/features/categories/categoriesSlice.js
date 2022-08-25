@@ -1,12 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getAllProductsInCategory } from '../products/productsSlice';
 import client from './../../app/client';
 import { GET_ALL_CATEGORIES } from './../../queries/queries';
 
 const getAllCategories = createAsyncThunk('categories/getAllCategories', async (_, thunkAPI) => {
     const response = await client.query({ query: GET_ALL_CATEGORIES })
-    const currentCategory = response.data.categories[0].name
-    thunkAPI.dispatch(getAllProductsInCategory(currentCategory))
     return response.data.categories
 })
 
