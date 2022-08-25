@@ -1,8 +1,0 @@
-1. Create spinner for the site 
-2. Remove all componentWillMount using spinner and componentDidMount
-3. Create state for cart 
-4. Create modal for quick cart
-5. Use localstorage to remember the items which user has chosen 
-6. Mark active currencies
-7. Mark items which is out of stock
-8. Create adaptive for site
